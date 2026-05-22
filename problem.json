@@ -1,0 +1,622 @@
+{
+    "define": [
+        {
+            "name": "craftcollision1"
+        },
+        {
+            "domain_name": "canadarm3-real"
+        },
+        {
+            "objects": [
+                {
+                    "name": "debris1",
+                    "type": "debris"
+                },
+                {
+                    "name": "debris2",
+                    "type": "debris"
+                },
+                {
+                    "name": "port1",
+                    "type": "port"
+                },
+                {
+                    "name": "s1",
+                    "type": "speed"
+                },
+                {
+                    "name": "s2",
+                    "type": "speed"
+                },
+                {
+                    "name": "s3",
+                    "type": "speed"
+                },
+                {
+                    "name": "s4",
+                    "type": "speed"
+                },
+                {
+                    "name": "s5",
+                    "type": "speed"
+                },
+                {
+                    "name": "cp1",
+                    "type": "spawn_coord"
+                },
+                {
+                    "name": "cp2",
+                    "type": "spawn_coord"
+                },
+                {
+                    "name": "cp3",
+                    "type": "spawn_coord"
+                },
+                {
+                    "name": "cp4",
+                    "type": "spawn_coord"
+                }
+            ]
+        },
+        {
+            "init": [
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "collision-distance",
+                            "terms": []
+                        },
+                        "value": 7
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "sensor-range",
+                            "terms": []
+                        },
+                        "value": 20
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "arm-speed",
+                            "terms": []
+                        },
+                        "value": 1
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "x-arm",
+                            "terms": []
+                        },
+                        "value": 200
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "y-arm",
+                            "terms": []
+                        },
+                        "value": 200
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "vx-arm",
+                            "terms": []
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "vy-arm",
+                            "terms": []
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "x-obj",
+                            "terms": [
+                                {
+                                    "name": "debris1",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "y-obj",
+                            "terms": [
+                                {
+                                    "name": "debris1",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "vx-obj",
+                            "terms": [
+                                {
+                                    "name": "debris1",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "vy-obj",
+                            "terms": [
+                                {
+                                    "name": "debris1",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "x-obj",
+                            "terms": [
+                                {
+                                    "name": "debris2",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "y-obj",
+                            "terms": [
+                                {
+                                    "name": "debris2",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "vx-obj",
+                            "terms": [
+                                {
+                                    "name": "debris2",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "vy-obj",
+                            "terms": [
+                                {
+                                    "name": "debris2",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "x-obj",
+                            "terms": [
+                                {
+                                    "name": "port1",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 205
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "y-obj",
+                            "terms": [
+                                {
+                                    "name": "port1",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 205
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "x-unspawned",
+                            "terms": []
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "y-unspawned",
+                            "terms": []
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "orbit-clock",
+                            "terms": []
+                        },
+                        "value": 5
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "orbit-clock-counter",
+                            "terms": []
+                        },
+                        "value": 5
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "sensor-repair-clock",
+                            "terms": []
+                        },
+                        "value": 20
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "sensor-repair-clock",
+                            "terms": []
+                        },
+                        "value": 20
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "battery-level",
+                            "terms": []
+                        },
+                        "value": 1000
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "battery-drain-rate",
+                            "terms": []
+                        },
+                        "value": 1
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "battery-charge-rate",
+                            "terms": []
+                        },
+                        "value": 2
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "full-battery-capacity",
+                            "terms": []
+                        },
+                        "value": 1000
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "num-collisions",
+                            "terms": []
+                        },
+                        "value": 0
+                    }
+                },
+                {
+                    "name": "port-free",
+                    "terms": [
+                        {
+                            "name": "port1",
+                            "type": "port"
+                        }
+                    ]
+                },
+                {
+                    "name": "grasp-free",
+                    "terms": []
+                },
+                {
+                    "name": "in-sun",
+                    "terms": []
+                },
+                {
+                    "name": "sensor-functional",
+                    "terms": []
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "grid-range",
+                            "terms": []
+                        },
+                        "value": 30
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "x-center-point",
+                            "terms": []
+                        },
+                        "value": 200
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "y-center-point",
+                            "terms": []
+                        },
+                        "value": 200
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "x-spawn",
+                            "terms": [
+                                {
+                                    "name": "cp1",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 230.0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "y-spawn",
+                            "terms": [
+                                {
+                                    "name": "cp1",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 200.0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "x-spawn",
+                            "terms": [
+                                {
+                                    "name": "cp2",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 200.0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "y-spawn",
+                            "terms": [
+                                {
+                                    "name": "cp2",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 230.0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "x-spawn",
+                            "terms": [
+                                {
+                                    "name": "cp3",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 170.0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "y-spawn",
+                            "terms": [
+                                {
+                                    "name": "cp3",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 200.0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "x-spawn",
+                            "terms": [
+                                {
+                                    "name": "cp4",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 200.0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "y-spawn",
+                            "terms": [
+                                {
+                                    "name": "cp4",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 170.0
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "speed-value",
+                            "terms": [
+                                {
+                                    "name": "s1",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 1
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "speed-value",
+                            "terms": [
+                                {
+                                    "name": "s2",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 2
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "speed-value",
+                            "terms": [
+                                {
+                                    "name": "s3",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 3
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "speed-value",
+                            "terms": [
+                                {
+                                    "name": "s4",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 4
+                    }
+                },
+                {
+                    "EqualTo": {
+                        "numeric_function": {
+                            "name": "speed-value",
+                            "terms": [
+                                {
+                                    "name": "s5",
+                                    "type": null
+                                }
+                            ]
+                        },
+                        "value": 5
+                    }
+                }
+            ]
+        },
+        {
+            "goal": {
+                "And": [
+                    {
+                        "name": "failure-collision",
+                        "terms": [
+                            {
+                                "name": "debris1",
+                                "type": null
+                            }
+                        ]
+                    },
+                    {
+                        "name": "failure-collision",
+                        "terms": [
+                            {
+                                "name": "debris2",
+                                "type": null
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
