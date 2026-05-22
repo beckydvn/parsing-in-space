@@ -1,16 +1,55 @@
 from lark import Tree, Token
 from pddl import parse_problem
-from pddl.core import Problem
+from pddl.action import Action
+from pddl.core import Domain, Problem
 from pddl.parser import GRAMMAR_FILE
 from pddl.logic.base import And, Or
 from pddl.logic.functions import EqualTo
-from pddl.logic.predicates import Predicate
+from pddl.logic.predicates import Predicate, DerivedPredicate
 from pddl.logic.terms import Constant
 from pddl.parser.base import BaseParser
-from pddl.parser.problem import ProblemTransformer
+from pddl.parser.problem import DomainTransformer, ProblemTransformer
 from pddl.helpers.base import assert_
+from typing import Dict
 import json
 
+def tuple_to_dict(tup):
+    """Process the 'problem_def' rule."""
+    return {tup[0]: tup[1]}
+
+class JSONDomainTransformer(DomainTransformer):
+    """Problem Transformer that returns a JSON representation of the problem."""
+
+    def __init__(self) -> None:
+        """Initialize the JSON problem transformer."""
+        super().__init__()
+        # Methods that should be wrapped with tuple_to_dict
+        # dict_methods = {"problem_def", "problem_domain", "requirements", "objects", "init", "goal"}
+        # for method_name in dict_methods:
+        #     parent_method = getattr(super(), method_name)
+        #     setattr(self, method_name, lambda args, m=parent_method: tuple_to_dict(m(args)))
+
+    def start(self, args):
+        """Process the rule 'start'."""
+        return {"domain": super().start(args)}
+    
+    def domain(self, args):
+        """Process the 'domain' rule."""
+        args = [arg for arg in args if arg is not None]
+        kwargs = {}
+        actions = []
+        derived_predicates = []
+        for arg in args[2:-1]:
+            if isinstance(arg, Action):
+                actions.append(arg)
+            elif isinstance(arg, DerivedPredicate):
+                derived_predicates.append(arg)
+            else:
+                assert_(isinstance(arg, dict))
+                kwargs.update(arg)
+        kwargs.update(actions=actions, derived_predicates=derived_predicates)
+        self._types = None
+        return kwargs
 
 class JSONProblemTransformer(ProblemTransformer):
     """Problem Transformer that returns a JSON representation of the problem."""
@@ -18,16 +57,14 @@ class JSONProblemTransformer(ProblemTransformer):
     def __init__(self) -> None:
         """Initialize the JSON problem transformer."""
         super().__init__()
+
+        self._domain_transformer = JSONDomainTransformer()
+        self._objects_by_name: Dict[str, Constant] = {}
         # Methods that should be wrapped with tuple_to_dict
         dict_methods = {"problem_def", "problem_domain", "requirements", "objects", "init", "goal"}
         for method_name in dict_methods:
             parent_method = getattr(super(), method_name)
-            setattr(self, method_name, lambda args, m=parent_method: JSONProblemTransformer.tuple_to_dict(m(args)))
-
-    @staticmethod
-    def tuple_to_dict(tup):
-        """Process the 'problem_def' rule."""
-        return {tup[0]: tup[1]}
+            setattr(self, method_name, lambda args, m=parent_method: tuple_to_dict(m(args)))
 
     def start(self, args):
         """Process the rule 'start'."""
@@ -41,7 +78,12 @@ class JSONProblemTransformer(ProblemTransformer):
             "Problem should start with '(define' and close with ')'",
         )
         return {"define": args[2:-1]}
-    
+
+class JSONDomainParser(BaseParser[Domain]):
+    """JSON PDDL domain parser class."""
+
+    transformer_cls = JSONDomainTransformer
+    start_symbol = "domain"
 
 class JSONProblemParser(BaseParser[Problem]):
     """JSON PDDL problem parser class."""
@@ -49,7 +91,7 @@ class JSONProblemParser(BaseParser[Problem]):
     transformer_cls = JSONProblemTransformer
     start_symbol = "problem"
 
-class JSONProblemEncoder(json.JSONEncoder):
+class JSONPDDLEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Constant):
             return {"name":obj.name,  "type": obj.type_tag}
@@ -64,15 +106,22 @@ class JSONProblemEncoder(json.JSONEncoder):
         elif isinstance(obj, (And, Or)):
             return {f"{type(obj).__name__}": obj.operands}
         return super().default(obj)
-
-if __name__ == "__main__":
-    problem_file = 'pddl_files/craftcollision1_problem.pddl'
+    
+def pddl_to_json(pddl_path: str, custom_parser: BaseParser):
     with open(GRAMMAR_FILE, "r") as f:
         grammar = f.read()
-    f = open(problem_file, "r")
-    problem_str = "\n".join(f.readlines())
-    parser = JSONProblemParser(grammar)
-    result = parser(problem_str)
-    # write to file
+    with open(pddl_path, "r") as f:
+        pddl_str = "\n".join(f.readlines())
+    parser = custom_parser(grammar)
+    result = parser(pddl_str)
     with open("problem.json", "w") as f:
-        json.dump(result, f, cls=JSONProblemEncoder, indent=4)
+        json.dump(result, f, cls=JSONPDDLEncoder, indent=4)
+
+if __name__ == "__main__":
+    # parse domain
+    domain_file = 'pddl_files/craftcollision1_domain.pddl'
+    pddl_to_json(domain_file, JSONDomainParser)
+
+    # parse problem
+    problem_file = 'pddl_files/craftcollision1_problem.pddl'
+    pddl_to_json(problem_file, JSONProblemParser)
