@@ -1,3 +1,5 @@
+import sys
+
 from lark import Tree, Token
 from pddl import parse_problem
 from pddl.action import Action
@@ -121,6 +123,7 @@ def pddl_to_json(pddl_path: str, custom_parser: BaseParser):
         json.dump(result, f, cls=JSONPDDLEncoder, indent=4)
 
 if __name__ == "__main__":
-    # # parse problem
-    problem_file = 'pddl_files/craftcollision1_problem.pddl'
+    # parse problem
+    args = sys.argv
+    problem_file = args[1] if len(args) > 1 else 'pddl_files/craftcollision1_problem.pddl'
     pddl_to_json(problem_file, JSONProblemParser)
