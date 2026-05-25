@@ -129,8 +129,7 @@
                             "name": "x-obj",
                             "terms": [
                                 {
-                                    "name": "debris1",
-                                    "type": null
+                                    "name": "debris1"
                                 }
                             ]
                         },
@@ -143,8 +142,7 @@
                             "name": "y-obj",
                             "terms": [
                                 {
-                                    "name": "debris1",
-                                    "type": null
+                                    "name": "debris1"
                                 }
                             ]
                         },
@@ -157,8 +155,7 @@
                             "name": "vx-obj",
                             "terms": [
                                 {
-                                    "name": "debris1",
-                                    "type": null
+                                    "name": "debris1"
                                 }
                             ]
                         },
@@ -171,8 +168,7 @@
                             "name": "vy-obj",
                             "terms": [
                                 {
-                                    "name": "debris1",
-                                    "type": null
+                                    "name": "debris1"
                                 }
                             ]
                         },
@@ -185,8 +181,7 @@
                             "name": "x-obj",
                             "terms": [
                                 {
-                                    "name": "debris2",
-                                    "type": null
+                                    "name": "debris2"
                                 }
                             ]
                         },
@@ -199,8 +194,7 @@
                             "name": "y-obj",
                             "terms": [
                                 {
-                                    "name": "debris2",
-                                    "type": null
+                                    "name": "debris2"
                                 }
                             ]
                         },
@@ -213,8 +207,7 @@
                             "name": "vx-obj",
                             "terms": [
                                 {
-                                    "name": "debris2",
-                                    "type": null
+                                    "name": "debris2"
                                 }
                             ]
                         },
@@ -227,8 +220,7 @@
                             "name": "vy-obj",
                             "terms": [
                                 {
-                                    "name": "debris2",
-                                    "type": null
+                                    "name": "debris2"
                                 }
                             ]
                         },
@@ -241,8 +233,7 @@
                             "name": "x-obj",
                             "terms": [
                                 {
-                                    "name": "port1",
-                                    "type": null
+                                    "name": "port1"
                                 }
                             ]
                         },
@@ -255,8 +246,7 @@
                             "name": "y-obj",
                             "terms": [
                                 {
-                                    "name": "port1",
-                                    "type": null
+                                    "name": "port1"
                                 }
                             ]
                         },
@@ -416,8 +406,7 @@
                             "name": "x-spawn",
                             "terms": [
                                 {
-                                    "name": "cp1",
-                                    "type": null
+                                    "name": "cp1"
                                 }
                             ]
                         },
@@ -430,8 +419,7 @@
                             "name": "y-spawn",
                             "terms": [
                                 {
-                                    "name": "cp1",
-                                    "type": null
+                                    "name": "cp1"
                                 }
                             ]
                         },
@@ -444,8 +432,7 @@
                             "name": "x-spawn",
                             "terms": [
                                 {
-                                    "name": "cp2",
-                                    "type": null
+                                    "name": "cp2"
                                 }
                             ]
                         },
@@ -458,8 +445,7 @@
                             "name": "y-spawn",
                             "terms": [
                                 {
-                                    "name": "cp2",
-                                    "type": null
+                                    "name": "cp2"
                                 }
                             ]
                         },
@@ -472,8 +458,7 @@
                             "name": "x-spawn",
                             "terms": [
                                 {
-                                    "name": "cp3",
-                                    "type": null
+                                    "name": "cp3"
                                 }
                             ]
                         },
@@ -486,8 +471,7 @@
                             "name": "y-spawn",
                             "terms": [
                                 {
-                                    "name": "cp3",
-                                    "type": null
+                                    "name": "cp3"
                                 }
                             ]
                         },
@@ -500,8 +484,7 @@
                             "name": "x-spawn",
                             "terms": [
                                 {
-                                    "name": "cp4",
-                                    "type": null
+                                    "name": "cp4"
                                 }
                             ]
                         },
@@ -514,8 +497,7 @@
                             "name": "y-spawn",
                             "terms": [
                                 {
-                                    "name": "cp4",
-                                    "type": null
+                                    "name": "cp4"
                                 }
                             ]
                         },
@@ -528,8 +510,7 @@
                             "name": "speed-value",
                             "terms": [
                                 {
-                                    "name": "s1",
-                                    "type": null
+                                    "name": "s1"
                                 }
                             ]
                         },
@@ -542,8 +523,7 @@
                             "name": "speed-value",
                             "terms": [
                                 {
-                                    "name": "s2",
-                                    "type": null
+                                    "name": "s2"
                                 }
                             ]
                         },
@@ -556,8 +536,7 @@
                             "name": "speed-value",
                             "terms": [
                                 {
-                                    "name": "s3",
-                                    "type": null
+                                    "name": "s3"
                                 }
                             ]
                         },
@@ -570,8 +549,7 @@
                             "name": "speed-value",
                             "terms": [
                                 {
-                                    "name": "s4",
-                                    "type": null
+                                    "name": "s4"
                                 }
                             ]
                         },
@@ -584,8 +562,7 @@
                             "name": "speed-value",
                             "terms": [
                                 {
-                                    "name": "s5",
-                                    "type": null
+                                    "name": "s5"
                                 }
                             ]
                         },
@@ -596,13 +573,12 @@
         },
         {
             "goal": {
-                "And": [
+                "Or": [
                     {
                         "name": "failure-collision",
                         "terms": [
                             {
-                                "name": "debris1",
-                                "type": null
+                                "name": "debris1"
                             }
                         ]
                     },
@@ -610,8 +586,7 @@
                         "name": "failure-collision",
                         "terms": [
                             {
-                                "name": "debris2",
-                                "type": null
+                                "name": "debris2"
                             }
                         ]
                     }

@@ -8,7 +8,7 @@ from pddl.logic.functions import EqualTo
 from pddl.logic.predicates import Predicate, DerivedPredicate
 from pddl.logic.terms import Constant
 from pddl.parser.base import BaseParser
-from pddl.parser.problem import DomainTransformer, ProblemTransformer
+from pddl.parser.problem import DomainTransformer, ProblemTransformer, Requirements
 from pddl.helpers.base import assert_
 from typing import Dict
 import json
@@ -18,16 +18,18 @@ def tuple_to_dict(tup):
     return {tup[0]: tup[1]}
 
 class JSONDomainTransformer(DomainTransformer):
-    """Problem Transformer that returns a JSON representation of the problem."""
+    """Domain Transformer that returns a JSON representation of the domain.
+    
+    NOTE: The pddl parser currently does not support PDDL+, but we provide the Domain Transformer template for the future.
+
+    We also use this to hard-code the requirements for the problem, since the problem parser does not have access to the domain requirements.
+    """
 
     def __init__(self) -> None:
-        """Initialize the JSON problem transformer."""
+        """Initialize the JSON domain transformer."""
         super().__init__()
-        # Methods that should be wrapped with tuple_to_dict
-        # dict_methods = {"problem_def", "problem_domain", "requirements", "objects", "init", "goal"}
-        # for method_name in dict_methods:
-        #     parent_method = getattr(super(), method_name)
-        #     setattr(self, method_name, lambda args, m=parent_method: tuple_to_dict(m(args)))
+        # import these: (:requirements :typing :negative-preconditions :conditional-effects :adl :fluents :equality)
+        self._extended_requirements = {Requirements.TYPING, Requirements.NEG_PRECONDITION, Requirements.CONDITIONAL_EFFECTS, Requirements.ADL, Requirements.FLUENTS, Requirements.EQUALITY}
 
     def start(self, args):
         """Process the rule 'start'."""
@@ -94,7 +96,8 @@ class JSONProblemParser(BaseParser[Problem]):
 class JSONPDDLEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Constant):
-            return {"name":obj.name,  "type": obj.type_tag}
+            # we currently ignore type tags for the initial and goal state, but these can be added if needed.
+            return {"name":obj.name,  "type": obj.type_tag} if obj.type_tag else {"name": obj.name}
         elif isinstance(obj, Predicate):
             return {"name": obj.name, "terms": obj.terms}
         elif isinstance(obj, Token):
@@ -111,17 +114,13 @@ def pddl_to_json(pddl_path: str, custom_parser: BaseParser):
     with open(GRAMMAR_FILE, "r") as f:
         grammar = f.read()
     with open(pddl_path, "r") as f:
-        pddl_str = "\n".join(f.readlines())
+        pddl_str = f.read()
     parser = custom_parser(grammar)
     result = parser(pddl_str)
-    with open("problem.json", "w") as f:
+    with open("output_json/problem.json", "w") as f:
         json.dump(result, f, cls=JSONPDDLEncoder, indent=4)
 
 if __name__ == "__main__":
-    # parse domain
-    domain_file = 'pddl_files/craftcollision1_domain.pddl'
-    pddl_to_json(domain_file, JSONDomainParser)
-
-    # parse problem
+    # # parse problem
     problem_file = 'pddl_files/craftcollision1_problem.pddl'
     pddl_to_json(problem_file, JSONProblemParser)
